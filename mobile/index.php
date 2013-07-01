@@ -7,6 +7,7 @@
     <link href="static/stylesheet.css" rel="stylesheet">  
 
   <!-- 1) Include the libraries -->
+    <script type="text/javascript" src="../common/config.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="../common/bootstrap.min.js"></script>
     <script type="text/javascript" src="../common/jquery.thingbroker-0.3.0.js"></script>
@@ -28,9 +29,16 @@
         </div>
 
         <div class="row">
-          <label class="col col-lg-2 control-label" for="file">Choose a name: </label>
+          <label class="col col-lg-2 control-label" for="image_name">Choose a name: </label>
           <div class="col col-lg-10">
-            <input type="text" name="name" id="name" />
+            <input type="text" name="image_name" id="image_name" />
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="col col-lg-2 control-label" for="image_comments">Have any comments: </label>
+          <div class="col col-lg-10">
+            <textarea name="image_comments" id="image_comments"></textarea>
           </div>
         </div>
 

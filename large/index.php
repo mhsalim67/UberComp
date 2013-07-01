@@ -3,6 +3,7 @@
     <title>UberComp</title>  
 
   <!-- 1) Include the libraries -->
+    <script type="text/javascript" src="../common/config.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="../common/jquery.thingbroker-0.3.0.js"></script>
     <!-- Optional
@@ -21,9 +22,9 @@
 
     <script type="text/javascript">
       //Make sure the thing is created
-      var thing = $.ThingBroker().getThing("mychat");
+      var thing = $.ThingBroker().getThing(config.app_name);
       if(thing === null) {
-        thing = $.ThingBroker().postThing({thingId: "mychat"});
+        thing = $.ThingBroker().postThing({thingId: config.app_name});
       }
       //custom response handler (appends the image source)
       function handleResponse(json, params, obj) {
@@ -33,7 +34,7 @@
       }
       //make sure the thing listens/follows the proper thingid, use custom callback
       $("#chat").thing({listen: true, callback: handleResponse});
-      $("#chat").thing({follow: "mychat"});
+      $("#chat").thing({follow: config.app_name});
 
     </script>
 

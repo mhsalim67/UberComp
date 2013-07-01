@@ -1,7 +1,7 @@
 $(function() {
   //create the thingbroker instance
   var tb = $.ThingBroker();
-  tb.postThing({thingId: "mychat"});
+  tb.postThing({thingId: config.app_name});
 
   //function for image uploading
   $("#image-upload").submit(function() {
@@ -12,7 +12,7 @@ $(function() {
       success: function(response) {
         //post the event with the returned location
         var resp = JSON.parse(response);
-        tb.postEvent("mychat", {location: resp['location']});
+        tb.postEvent(config.app_name, {location: resp['location']});
       }
     });
 

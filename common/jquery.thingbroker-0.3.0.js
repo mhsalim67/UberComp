@@ -8,13 +8,7 @@
  */
 
 /*Nerve-wreking global variable*/
-pathArray = window.location.href.split( '/' );
-protocol = pathArray[0];
-host = pathArray[2];
-url = protocol + '//' + host;
-console.log(url);
-
-var thingBrokerUrl = url+':8080/thingbroker';
+var thingBrokerUrl = config.thingbroker_url;
 
 /*Global Functions*/
 function setUniqueId(thingId) {
