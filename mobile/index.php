@@ -4,11 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="../common/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
     <link href="static/stylesheet.css" rel="stylesheet">  
 
   <!-- 1) Include the libraries -->
     <script type="text/javascript" src="../common/config.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
     <script src="../common/bootstrap.min.js"></script>
     <script type="text/javascript" src="../common/jquery.thingbroker-0.3.0.js"></script>
     <script type="text/javascript" src="../common/jquery.formplugin.js"></script>
@@ -48,6 +50,16 @@
           </div>
         </div>
       </form>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+      <div data-role="navbar">
+        <ul>
+            <li><a href="#" data-icon="home">My Photos</a></li>
+            <li><a href="#" data-icon="search" >Search Photos</a></li>
+            <li><a href="#" data-icon="plus" class="ui-btn-active">Add Photo</a></li>
+        </ul>
+        </div>
     </div>
 
   </body>

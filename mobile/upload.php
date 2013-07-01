@@ -13,7 +13,9 @@
 	$image->save($filepath.$time); 
 
 	$return = array(
-		'location' => $filepath.$time
+		'location' => $filepath.$time,
+		'image_name' => $_POST['image_name'],
+		'image_comments' => $_POST['image_comments']
 	);
 	echo json_encode($return);
 

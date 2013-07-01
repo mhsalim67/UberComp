@@ -12,7 +12,11 @@ $(function() {
       success: function(response) {
         //post the event with the returned location
         var resp = JSON.parse(response);
-        tb.postEvent(config.app_name, {location: resp['location']});
+        tb.postEvent(config.app_name, {
+          location: resp['location'],
+          name: resp['image_name'],
+          comments: resp['image_comments']
+        });
       }
     });
 
