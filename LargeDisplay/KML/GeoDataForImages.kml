@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<kml xmlns='http://earth.google.com/kml/2.2'>
+<Document>
+   <name>./google-addresses.kml</name>
+<Style id="normalPlacemark">
+  <IconStyle>
+       <Icon>
+            <href>http://web.cs.dal.ca/~rizi/img/dal2.png</href>
+        </Icon>
+     </IconStyle>
+</Style>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/05/stafford-trial-tues.html?cmp=rss"><img src="http://www.cbc.ca/gfx/images/news/topstories/2012/03/06/li-620-stafford-headband-cp-6583615.jpg" width="120" /><a></br>The mother of one of Victoria (Tori) Stafford’s classmates told a London, Ont., court Tuesday that she saw the Grade 3 student walking with a young woman on the afternoon that she disappeared nearly three years ago.<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/05/stafford-trial-tues.html?cmp=rss">Click me</a> ]]></description>
+ <styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.577795,44.632681</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/stafford-trial-judge-warning-jury.html?cmp=rss"><img src=http://www.cbc.ca/gfx/images/news/topstories/2012/03/06/li-620-judge-jury.jpg width="120" /><a></br>The judge presiding over the trial of a man accused of killing Victoria (Tori) Stafford warned jurors Tuesday not to discuss what is happening inside the London, Ont., courtroom with others.<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/stafford-trial-judge-warning-jury.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.569899,44.624495</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/transit-new-board.html?cmp=rss"><img src=http://www.cbc.ca/gfx/images/news/topstories/2012/03/06/li-620-judge-jury.jpg width="120" /><a></br>Two members of Toronto’s newly constituted transit board said Tuesday they hope Monday’s move to dissolve the former board will clear the way for progress on transit expansion.<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/transit-new-board.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.579297,44.647189</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/nail-shellac-skin-cancer.html?cmp=rss"><img src=http://www.cbc.ca/gfx/images/news/topstories/2012/03/06/li-620-nail-light.jpg width="120" /><a></br>Skin doctors say women should be aware of the cancer risks of using UV lights to dry nails after manicure treatments.<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/nail-shellac-skin-cancer.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.568654,44.633876</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/toronto-muslim-cemetary.html?cmp=rss"><img src=http://www.cbc.ca/gfx/images/news/topstories/2012/03/06/li-620-judge-jury.jpg width="120" /><a></br>The Greater Toronto Area will be getting its first cemetery catering to all Muslims this summer.<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/toronto-muslim-cemetary.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.602471,44.647678</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/sports/soccer/opinion/2012/03/toronto-fc-season-preview.html?cmp=rss"><img src=http://www.cbc.ca/sports/soccer/opinion/assets_c/2012/03/dunfield-koevermans-get-620-111022-thumb-620xauto-178412.jpg width="120" /><a></br>Let''s not sugar coat it. The 2011 season for Toronto FC was the worst since its inaugural year in MLS in 2007. <br /><a href="http://www.cbc.ca/sports/soccer/opinion/2012/03/toronto-fc-season-preview.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.577924,44.669534</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/toronto-mining-convention.html?cmp=rss"><img src=http://www.cbc.ca/gfx/images/news/topstories/2012/03/06/li-620-judge-jury.jpg width="120" /><a></br>Nearly 30,000 people are in Toronto for the Prospectors and Developers Association of Canada convention, billed as the biggest mining convention in the world.<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/06/toronto-mining-convention.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.626461,44.64849</coordinates>
+       </Point>
+   </Placemark>
+   <Placemark>
+       <description> <![CDATA[  <a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/05/hamstead-crash-survivor.html?cmp=rss"><img src=http://www.cbc.ca/gfx/images/news/topstories/2012/03/05/li-620-alba-medina.jpg width="120" /><a></br>One of the three survivors of a deadly crash that killed 11 people in southwestern Ontario last month says he "cannot be happy."<br /><a href="http://www.cbc.ca/news/canada/toronto/story/2012/03/05/hamstead-crash-survivor.html?cmp=rss">Click me</a><br/><img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=http://localhost/" alt="qr code"/>]]></description>
+<styleUrl>#normalPlacemark</styleUrl>
+       <Point>
+           <coordinates>-63.613801,44.640594</coordinates>
+       </Point>
+   </Placemark>
+</Document>
+</kml>
