@@ -10,31 +10,30 @@ $(function() {
 
 	//function for image uploading
 	$("#image-upload").submit(function() {
-	//use the ajaxsubmit library
-	$(this).ajaxSubmit({
-		url: 'upload.php',
-		type: 'POST',
-		success: function(response) {
-			//post the event with the returned location
-			var curr_pos = new Object();
-			navigator.geolocation.getCurrentPosition(function(position) {
-	  			curr_pos.latitude = position.coords.latitude;
-	  			curr_pos.longitude = position.coords.longitude;
+		var self = this;
+		var curr_pos = new Object();
 
-				var resp = JSON.parse(response);
-				tb.postEvent(config.app_name, {
-					location: resp['img_src'],
-					name: resp['image_name'],
-					comments: resp['image_comments'],
-					position: curr_pos
-				});
-	  		}, function(error) {
-	  			//handle the user not allowing location
-	  		});
-
-		}
-	});
-
+		navigator.geolocation.getCurrentPosition(function(position) {
+			curr_pos.latitude = position.coords.latitude;
+			curr_pos.longitude = position.coords.longitude;
+			//use the ajaxsubmit library
+			$(self).ajaxSubmit({
+				url: 'upload.php',
+				type: 'POST',
+				success: function(response) {
+					//post the event with the returned location
+					var resp = JSON.parse(response);
+					tb.postEvent(config.app_name, {
+						img_src: resp['img_src'],
+						name: resp['image_name'],
+						comments: resp['image_comments'],
+						position: curr_pos
+					});
+				}
+			});
+		}, function(error) {
+			//handle the user not allowing location
+		});
 	return false;
 	});
 });

@@ -38,7 +38,7 @@
           response['position']  has 2 elements: longitude, latitude for the user location
           response['comments']  comments about the image by the uploading user
         */
-        if(response['img_src']) {
+        if(response && response['img_src']) {
           $("#chat").append("<img src='"+response['img_src']+"' />");
         }
       }
