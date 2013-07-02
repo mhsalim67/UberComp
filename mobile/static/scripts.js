@@ -25,12 +25,16 @@ $(function() {
 				success: function(response) {
 					//post the event with the returned location
 					var resp = JSON.parse(response);
-					tb.postEvent(config.app_name, {
-						img_src: resp['img_src'],
-						name: resp['image_name'],
-						comments: resp['image_comments'],
-						position: curr_pos
-					});
+					if(resp['success']) {
+						tb.postEvent(config.app_name, {
+							img_src: resp['img_src'],
+							name: resp['image_name'],
+							comments: resp['image_comments'],
+							position: curr_pos
+						});
+					} 
+					$("#form_feedback").html(resp['feedback']);
+					$("#feedback").popup().popup("open");
 				}
 			});
 		}, function(error) {
