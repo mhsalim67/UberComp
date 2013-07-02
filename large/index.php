@@ -28,8 +28,18 @@
       }
       //custom response handler (appends the image source)
       function handleResponse(json, params, obj) {
-        if(json[0] && json[0]['info'] && json[0]['info']['location']) {
-          $("#chat").append("<img src='"+json[0]['info']['location']+"' />");
+        var response;
+        if(json[0] && json[0]['info']) {
+          response = json[0]['info'];
+        }
+        /*
+          response['img_src']   gives access to the relative url of the image
+          response['img_name']  name given to the image by the user
+          response['position']  has 2 elements: longitude, latitude for the user location
+          response['comments']  comments about the image by the uploading user
+        */
+        if(response['img_src']) {
+          $("#chat").append("<img src='"+response['img_src']+"' />");
         }
       }
       //make sure the thing listens/follows the proper thingid, use custom callback
