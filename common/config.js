@@ -3,7 +3,8 @@ var config = new Object();
 /* thingbroker url */
 pathArray = window.location.href.split( '/' );
 protocol = pathArray[0];
-host = pathArray[2];
+temp_host = pathArray[2].split(':');
+host = temp_host[0];
 url = protocol + '//' + host;
 config.thingbroker_url = url+':8080/thingbroker';
 
