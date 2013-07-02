@@ -1,8 +1,10 @@
 $(function() {
-	if (!navigator.geolocation) {
-		//handle geolocation not available (jquery mobile popup)
-	}
-
+	$("#add_photo").bind("pageshow", function(event) {
+		if (!navigator.geolocation) {
+			//handle geolocation not available (jquery mobile popup)
+			$("#location_support").popup().popup("open");
+		}
+	});
 
 	//create the thingbroker instance
 	var tb = $.ThingBroker();
@@ -32,6 +34,7 @@ $(function() {
 				}
 			});
 		}, function(error) {
+			$("#location_support").popup().popup("open");
 			//handle the user not allowing location
 		});
 	return false;

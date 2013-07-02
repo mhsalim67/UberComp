@@ -13,6 +13,12 @@
 
 			<button data-theme="a">Submit</button>
 		</form>
+
+		<div data-role="popup" id="location_support" data-position-to="window"
+			 data-overlay-theme="a" class="ui-content">
+			<p>Sorry, location is either not supported on your device or you didn't allow it</p>
+			<p>You won't be able to upload photos without location support</p>
+		</div>
 	</div>
 
 	<div data-role="footer" data-position="fixed">
@@ -22,7 +28,6 @@
 				<li><a href="#search_photos" data-icon="search">Search Photos</a></li>
 				<li><a href="#add_photo" data-icon="plus" class="ui-btn-active">Add Photo</a></li>
 			</ul>
-
 		</div>
 	</div>
 </div>
