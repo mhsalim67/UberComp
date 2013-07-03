@@ -11,7 +11,7 @@
 			<label for="image_comments">Have any comments: </label>
 				<textarea name="image_comments" id="image_comments" required></textarea>
 
-			<button data-theme="a">Submit</button>
+			<button data-theme="a" id="image_submit">Submit</button>
 		</form>
 
 		<div data-role="popup" id="location_support" data-position-to="window"

@@ -1,7 +1,13 @@
 $(function() {
 	$("#add_photo").bind("pageshow", function(event) {
+		var location_enabled = true;
 		if (!navigator.geolocation) {
 			//handle geolocation not available (jquery mobile popup)
+			location_enabled = false;
+			$("#file").attr('disabled', true);
+			$("#image_name").attr('disabled', true);
+			$("#image_comments").attr('disabled', true);
+			$("#image_submit").attr('disabled', true);
 			$("#location_support").popup().popup("open");
 		}
 	});
@@ -15,32 +21,34 @@ $(function() {
 		var self = this;
 		var curr_pos = new Object();
 
-		navigator.geolocation.getCurrentPosition(function(position) {
-			curr_pos.latitude = position.coords.latitude;
-			curr_pos.longitude = position.coords.longitude;
-			//use the ajaxsubmit library
-			$(self).ajaxSubmit({
-				url: 'upload.php',
-				type: 'POST',
-				success: function(response) {
-					//post the event with the returned location
-					var resp = JSON.parse(response);
-					if(resp['success']) {
-						tb.postEvent(config.app_name, {
-							img_src: resp['img_src'],
-							name: resp['image_name'],
-							comments: resp['image_comments'],
-							position: curr_pos
-						});
-					} 
-					$("#form_feedback").html(resp['feedback']);
-					$("#feedback").popup().popup("open");
-				}
+		if(location_enabled) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				curr_pos.latitude = position.coords.latitude;
+				curr_pos.longitude = position.coords.longitude;
+				//use the ajaxsubmit library
+				$(self).ajaxSubmit({
+					url: 'upload.php',
+					type: 'POST',
+					success: function(response) {
+						//post the event with the returned location
+						var resp = JSON.parse(response);
+						if(resp['success']) {
+							tb.postEvent(config.app_name, {
+								img_src: resp['img_src'],
+								name: resp['image_name'],
+								comments: resp['image_comments'],
+								position: curr_pos
+							});
+						} 
+						$("#form_feedback").html(resp['feedback']);
+						$("#feedback").popup().popup("open");
+					}
+				});
+			}, function(error) {
+				$("#location_support").popup().popup("open");
+				//handle the user not allowing location
 			});
-		}, function(error) {
-			$("#location_support").popup().popup("open");
-			//handle the user not allowing location
-		});
+		}
 	return false;
 	});
 });
