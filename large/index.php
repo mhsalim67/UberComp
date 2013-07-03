@@ -1,25 +1,81 @@
 <html>  
   <head>  
     <title>UberComp</title>  
-
+<style>
+      html, body, #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+</style>
   <!-- 1) Include the libraries -->
     <script type="text/javascript" src="../common/config.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="../common/jquery.thingbroker-0.3.0.js"></script>
-    <!-- Optional
-    <script type="text/javascript" src="jquery.thingbroker-0.3.0.min.js"></script>
-    -->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script>
+		var map;
+		function initialize() {
+		  var mapOptions = {
+			zoom: 8,
+			center: new google.maps.LatLng(44.636672,-63.591421),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		  };
+		  map = new google.maps.Map(document.getElementById('map-canvas'),
+			  mapOptions);
+			  
+		}
+function addIcons(response){
 
-  <!-- 2) Use CSS to make things pretty -->
-    <style type="text/css">
+	
+	var image = {
+    url: 'img/dal2.png',
+    // This marker is 20 pixels wide by 32 pixels tall.
+    size: new google.maps.Size(50, 47),
+    // The origin for this image is 0,0.
+    //origin: new google.maps.Point(0,0),
+    // The anchor for this image is the base of the flagpole at 0,32.
+    //anchor: new google.maps.Point(0, 32)
+  };
+  var myLatLng = new google.maps.LatLng(response.position.latitude,response.position.longitude);
+  var marker = new google.maps.Marker({
+        position: myLatLng,
+		icon: image,
+		title: response.img_name,
+        map: map});
+		
+		
+		var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h3 id="firstHeading" class="firstHeading">'+response.img_name+'</h3>'+
+      '<div id="bodyContent">'+
+      '<p>'+response.comments+'</p>'+
+	  '<img src='+response['img_src']+' /></br>'+
+      '<a href="http://www.halifaxhistory.ca/" target="_blank">To see more information check here </a></br>'+
+	  '<img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=response.QRlink"alt="qr code"/></br>'
 
-    </style>
+      '</div>'+
+      '</div>';
 
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+  });
+		
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });		
+		
+		
+		
+}
+		google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+     
   </head>  
-
   <body>
     <div id="chat"></div>
-
+    <div id="map-canvas"></div>
     <script type="text/javascript">
       //Make sure the thing is created
       var thing = $.ThingBroker().getThing(config.app_name);
@@ -39,7 +95,13 @@
           response['comments']  comments about the image by the uploading user
         */
         if(response && response['img_src']) {
-          $("#chat").append("<img src='"+response['img_src']+"' />");
+         // $("#chat").append("<img src='"+response['img_src']+"' />");
+		  			console.log(response.img_src );
+					console.log(response.img_name);
+		  			console.log(response.position);
+		  			console.log(response.comments);
+
+					addIcons(response);
         }
       }
       //make sure the thing listens/follows the proper thingid, use custom callback
