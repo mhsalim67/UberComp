@@ -3,7 +3,7 @@
 		<h1>File Upload</h1>
 		<form id="image-upload" enctype="multipart/form-data">
 			<label for="file">Pick a file: </label>
-				<input type="file" name="file" id="file"/>
+				<input type="file" name="file" id="file" required/>
 			
 			<label for="image_name">Choose a name: </label>
 				<input type="text" name="image_name" id="image_name" required/>
@@ -11,7 +11,7 @@
 			<label for="image_comments">Have any comments: </label>
 				<textarea name="image_comments" id="image_comments" required></textarea>
 
-			<button data-theme="a">Submit</button>
+			<button data-theme="a" id="image_submit">Submit</button>
 		</form>
 
 		<div data-role="popup" id="location_support" data-position-to="window"
