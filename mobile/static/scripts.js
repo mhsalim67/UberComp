@@ -1,6 +1,6 @@
 $(function() {
+	var location_enabled = true;
 	$("#add_photo").bind("pageshow", function(event) {
-		var location_enabled = true;
 		if (!navigator.geolocation) {
 			//handle geolocation not available (jquery mobile popup)
 			location_enabled = false;
@@ -35,7 +35,7 @@ $(function() {
 						if(resp['success']) {
 							tb.postEvent(config.app_name, {
 								img_src: resp['img_src'],
-								name: resp['image_name'],
+								img_name: resp['image_name'],
 								comments: resp['image_comments'],
 								position: curr_pos
 							});
