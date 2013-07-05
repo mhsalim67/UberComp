@@ -19,7 +19,7 @@
 				$image->resizeToWidth(250); 
 				$image->save($filepath.$time); 
 
-				$response['img_src'] = $filepath.$time;
+				$response['img_src'] = $time;
 				$response['image_name'] = $_POST['image_name'];
 				$response['image_comments'] = $_POST['image_comments'];
 				$response['feedback'] = 'Your image was uploaded successfully';

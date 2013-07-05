@@ -51,9 +51,9 @@ function addIcons(response){
       '<h3 id="firstHeading" class="firstHeading">'+response.img_name+'</h3>'+
       '<div id="bodyContent">'+
       '<p>'+response.comments+'</p>'+
-	  '<img src='+response['img_src']+' /></br>'+
+	  '<img src='+config.image_location+response['img_src']+' /></br>'+
       '<a href="http://www.halifaxhistory.ca/" target="_blank">To see more information check here </a></br>'+
-	  '<img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=response.QRlink"alt="qr code"/></br>'
+	  '<img src="'+config.image_qrcode+response['img_src']+" alt="qr code"/></br>'
 
       '</div>'+
       '</div>';
@@ -97,7 +97,7 @@ function addIcons(response){
         if(response && response['img_src']) {
          // $("#chat").append("<img src='"+response['img_src']+"' />");
 		  			console.log(response.img_src );
-					console.log(response.img_name);
+				    console.log(response.img_name);
 		  			console.log(response.position);
 		  			console.log(response.comments);
 		  			console.log(response);

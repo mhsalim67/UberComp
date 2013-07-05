@@ -10,3 +10,10 @@ config.thingbroker_url = url+':8080/thingbroker';
 
 /* app name */
 config.app_name = 'ubercomp';
+
+/* image location */
+config.image_location = '../common/images/';
+
+/* image view url (for QR codes) */
+config.image_qrcode = 'https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl='+
+						protocol + '//' + temp_host + '/mobile/view.php?img=';
