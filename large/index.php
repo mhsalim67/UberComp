@@ -17,7 +17,7 @@
 		var map;
 		function initialize() {
 		  var mapOptions = {
-			zoom: 8,
+			zoom: 12,
 			center: new google.maps.LatLng(44.636672,-63.591421),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		  };
@@ -50,10 +50,8 @@ function addIcons(response){
       '</div>'+
       '<h3 id="firstHeading" class="firstHeading">'+response.img_name+'</h3>'+
       '<div id="bodyContent">'+
-      '<p>'+response.comments+'</p>'+
 	  '<img src='+response['img_src']+' /></br>'+
-      '<a href="http://www.halifaxhistory.ca/" target="_blank">To see more information check here </a></br>'+
-	  '<img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=response.QRlink"alt="qr code"/></br>'
+	  '<img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=response.QRlink"alt="qr code"  width="100" height="100"/></br>'
 
       '</div>'+
       '</div>';
