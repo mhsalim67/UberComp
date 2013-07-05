@@ -29,7 +29,7 @@ function addIcons(response){
 
 	
 	var image = {
-    url: 'img/dal2.png',
+    url: 'img/dal.png',
     // This marker is 20 pixels wide by 32 pixels tall.
     size: new google.maps.Size(50, 47),
     // The origin for this image is 0,0.
