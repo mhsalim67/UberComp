@@ -17,3 +17,6 @@ config.image_location = '../common/images/';
 /* image view url (for QR codes) */
 config.image_qrcode = 'https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl='+
 						protocol + '//' + temp_host + '/mobile/view.php?img=';
+
+config.large_image = '-large';
+config.small_image = '-thumb';
