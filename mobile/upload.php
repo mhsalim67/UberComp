@@ -16,10 +16,13 @@
 			if(move_uploaded_file($file['tmp_name'], $filepath.$time)) {
 				$image = new SimpleImage(); 
 				$image->load($filepath.$time); 
-				$image->resizeToWidth(250); 
-				$image->save($filepath.$time); 
+				$image->resizeToWidth(50); 
+				$image->save($filepath.$time."-thumb"); 
 
-				$response['img_src'] = $filepath.$time;
+				$image->resizeToWidth(500);
+				$image->save($filepath.$time."-large");
+
+				$response['img_src'] = $time;
 				$response['image_name'] = $_POST['image_name'];
 				$response['image_comments'] = $_POST['image_comments'];
 				$response['feedback'] = 'Your image was uploaded successfully';
