@@ -19,4 +19,19 @@
         height: 24px;
 	
 }
-
+.mapStyle{
+		float: left; 
+		float: top; 
+		width: 50%;
+		height:50%;
+		border:solid;
+		border-width:2;
+}
+.updateStyle{
+		float: left; 
+		float: bottom; 
+		width: 50%;
+		height:50%;
+		border:solid;
+		border-width:2;
+}

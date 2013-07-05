@@ -65,7 +65,7 @@ function addIcons(response){
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.open(map,marker);
   });		
-		
+  infowindow.open(map,marker);		
 		
 		
 }
@@ -100,6 +100,7 @@ function addIcons(response){
 					console.log(response.img_name);
 		  			console.log(response.position);
 		  			console.log(response.comments);
+		  			console.log(response);
 
 					addIcons(response);
         }
