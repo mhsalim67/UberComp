@@ -17,17 +17,17 @@
 		var map;
 		function initialize() {
 		  var mapOptions = {
-			zoom: 12,
+			zoom: 8,
 			center: new google.maps.LatLng(44.636672,-63.591421),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		  };
 		  map = new google.maps.Map(document.getElementById('map-canvas'),
 			  mapOptions);
-			  
+
 		}
 function addIcons(response){
 
-	
+
 	var image = {
     url: 'img/dal.png',
     // This marker is 20 pixels wide by 32 pixels tall.
@@ -43,31 +43,31 @@ function addIcons(response){
 		icon: image,
 		title: response.img_name,
         map: map});
-		
-		
+
+
 		var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
       '<h3 id="firstHeading" class="firstHeading">'+response.img_name+'</h3>'+
       '<div id="bodyContent">'+
+      '<p>'+response.comments+'</p>'+
 	  '<img src='+config.image_location+response['img_src']+config.small_image+' /></br>'+
-<<<<<<< .mine	  '<img src="https://chart.googleapis.com/chart?cht=qr&chs=150x150&chl=response.QRlink"alt="qr code"  width="100" height="100"/></br>'
-=======      '<a href="http://www.halifaxhistory.ca/" target="_blank">To see more information check here </a></br>'+
+      '<a href="http://www.halifaxhistory.ca/" target="_blank">To see more information check here </a></br>'+
 	  '<img src="'+config.image_qrcode+response['img_src']+'" alt="qr code"/></br>'
->>>>>>> .theirs
+
       '</div>'+
       '</div>';
 
   var infowindow = new google.maps.InfoWindow({
       content: contentString
   });
-		
+
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.open(map,marker);
   });		
   infowindow.open(map,marker);		
-		
-		
+
+
 }
 		google.maps.event.addDomListener(window, 'load', initialize);
     </script>
