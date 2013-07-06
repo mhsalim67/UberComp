@@ -13,29 +13,23 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript" src="../common/jquery.thingbroker-0.3.0.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<link rel="stylesheet" type="text/css" href="Style/mystyle.css" />
 	<script>
 		var map;
 		function initialize() {
 		  var mapOptions = {
-			zoom: 8,
+			zoom: 13,
 			center: new google.maps.LatLng(44.636672,-63.591421),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		  };
 		  map = new google.maps.Map(document.getElementById('map-canvas'),
 			  mapOptions);
-			  
+
 		}
 function addIcons(response){
-
-	
 	var image = {
     url: 'img/dal.png',
-    // This marker is 20 pixels wide by 32 pixels tall.
     size: new google.maps.Size(50, 47),
-    // The origin for this image is 0,0.
-    //origin: new google.maps.Point(0,0),
-    // The anchor for this image is the base of the flagpole at 0,32.
-    //anchor: new google.maps.Point(0, 32)
   };
   var myLatLng = new google.maps.LatLng(response.position.latitude,response.position.longitude);
   var marker = new google.maps.Marker({
@@ -43,40 +37,45 @@ function addIcons(response){
 		icon: image,
 		title: response.img_name,
         map: map});
-		
-		
 		var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h3 id="firstHeading" class="firstHeading">'+response.img_name+'</h3>'+
-      '<div id="bodyContent">'+
-      '<p>'+response.comments+'</p>'+
-	  '<img src='+config.image_location+response['img_src']+config.small_image+' /></br>'+
-      '<a href="http://www.halifaxhistory.ca/" target="_blank">To see more information check here </a></br>'+
-	  '<img src="'+config.image_qrcode+response['img_src']+'" alt="qr code"/></br>'
-
+      '<h3>'+'<img src="'+config.image_qrcode+response.img_src+
+	  '"alt="qr code" width="80" height="80" align="middle"/>'+response.img_name+'</h3>'+
+      '<div id="bodyContent" class="your-selector">'+
+      "<img style='border:10px solid #FFFFFF' src="+
+	  config.image_location+response.img_src+config.small_image+' /></br>'+response.comments+
       '</div>'+
       '</div>';
 
   var infowindow = new google.maps.InfoWindow({
-      content: contentString
-  });
-		
+      content: contentString,
+	  maxWidth: 300
+	  });
+
   google.maps.event.addListener(marker, 'click', function() {
     infowindow.open(map,marker);
   });		
   infowindow.open(map,marker);		
-		
-		
 }
 		google.maps.event.addDomListener(window, 'load', initialize);
     </script>
      
   </head>  
   <body>
-    <div id="chat"></div>
-    <div id="map-canvas"></div>
+  <!-- 2) Dividing the large screen -->
+  <!-- 3) latestComments location -->
+    <div id="latestComments"style="position:absolute;right:0;left:80% right:20%"></div>
+  <!-- 4) latestImage location -->
+	<div id="latestImage"style="position:absolute;right:0;left:51%; right:20%;"></div>
+  <!-- 5) Map location -->
+    <div id="map-canvas" style="position:absolute;left:0;width:50%;height:100%"></div>
     <script type="text/javascript">
+	//to remove previous image,comments!!
+	function removeDummy() {
+	if (div) {
+    var div = document.getElementById('tests');
+    div.parentNode.removeChild(div);
+	}
+}
       //Make sure the thing is created
       var thing = $.ThingBroker().getThing(config.app_name);
       if(thing === null) {
@@ -95,19 +94,18 @@ function addIcons(response){
           response['comments']  comments about the image by the uploading user
         */
         if(response && response['img_src']) {
-         // $("#chat").append("<img src='"+response['img_src']+"' />");
-		  			console.log(response.img_src );
-				    console.log(response.img_name);
-		  			console.log(response.position);
-		  			console.log(response.comments);
-		  			console.log(response);
+		removeDummy();
+         $("#latestImage").append('<img src="'+config.image_location+response.img_src+config.large_image+'" width="'+ 0.31*screen.width + ' "height="'+0.2*screen.height+'"/>');
+		 $("#latestComments").append("<h3><img src="+config.image_qrcode+response.img_src+' "alt="qr code" width="80" height="80" align="middle"/>'+response.img_name+'</h3></br><div id="bodyContent" class="your-selector">'+response.comments+'</div>');
+		 $("#imgList").append("<div id="+'"tests"'+"><img src="+config.image_location+response.img_src+config.large_image +" />");
 
+					console.log(response);
 					addIcons(response);
         }
       }
       //make sure the thing listens/follows the proper thingid, use custom callback
-      $("#chat").thing({listen: true, callback: handleResponse});
-      $("#chat").thing({follow: config.app_name});
+      $("#latestImage").thing({listen: true, callback: handleResponse});
+      $("#latestImage").thing({follow: config.app_name});
 
     </script>
 
