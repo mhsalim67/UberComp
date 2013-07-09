@@ -16,7 +16,7 @@
 			if(move_uploaded_file($file['tmp_name'], $filepath.$time)) {
 				$image = new SimpleImage(); 
 				$image->load($filepath.$time); 
-				$image->resizeToWidth(50); 
+				$image->resizeToWidth(100); 
 				$image->save($filepath.$time."-thumb"); 
 
 				$image->resizeToWidth(500);
