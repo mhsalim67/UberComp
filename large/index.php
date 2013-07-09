@@ -37,6 +37,7 @@ function addIcons(response){
 		icon: image,
 		title: response.img_name,
         map: map});
+		map.setCenter(marker.getPosition());
 		var contentString = '<div id="content">'+
       '<h3>'+'<img src="'+config.image_qrcode+response.img_src+
 	  '"alt="qr code" width="80" height="80" align="middle"/>'+response.img_name+'</h3>'+
@@ -62,20 +63,11 @@ function addIcons(response){
   </head>  
   <body>
   <!-- 2) Dividing the large screen -->
-  <!-- 3) latestComments location -->
-    <div id="latestComments"style="position:absolute;right:0;left:80% right:20%"></div>
-  <!-- 4) latestImage location -->
-	<div id="latestImage"style="position:absolute;right:0;left:51%; right:20%;"></div>
+   <!-- 3) latestImage location -->
+	<div id="latestImage"style="position:absolute;bottom:0;width:100%;height:10%;"></div>
   <!-- 5) Map location -->
-    <div id="map-canvas" style="position:absolute;left:0;width:50%;height:100%"></div>
+    <div id="map-canvas" style="position:absolute;top:0;width:100%;height:90%;"></div>
     <script type="text/javascript">
-	//to remove previous image,comments!!
-	function removeDummy() {
-	if (div) {
-    var div = document.getElementById('tests');
-    div.parentNode.removeChild(div);
-	}
-}
       //Make sure the thing is created
       var thing = $.ThingBroker().getThing(config.app_name);
       if(thing === null) {
@@ -94,11 +86,6 @@ function addIcons(response){
           response['comments']  comments about the image by the uploading user
         */
         if(response && response['img_src']) {
-		removeDummy();
-         $("#latestImage").append('<img src="'+config.image_location+response.img_src+config.large_image+'" width="'+ 0.31*screen.width + ' "height="'+0.2*screen.height+'"/>');
-		 $("#latestComments").append("<h3><img src="+config.image_qrcode+response.img_src+' "alt="qr code" width="80" height="80" align="middle"/>'+response.img_name+'</h3></br><div id="bodyContent" class="your-selector">'+response.comments+'</div>');
-		 $("#imgList").append("<div id="+'"tests"'+"><img src="+config.image_location+response.img_src+config.large_image +" />");
-
 					console.log(response);
 					addIcons(response);
         }
@@ -106,6 +93,7 @@ function addIcons(response){
       //make sure the thing listens/follows the proper thingid, use custom callback
       $("#latestImage").thing({listen: true, callback: handleResponse});
       $("#latestImage").thing({follow: config.app_name});
+	  $("#latestImage").append("<img src="+config.image_qrcode+'response.img_src alt="qr code" width="80" height="80" align="middle"/>');
 
     </script>
 
