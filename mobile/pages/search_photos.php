@@ -1,5 +1,25 @@
 <div data-role="page" id="search_photos">
+	<div data-role="header">
+		<form id="search-form">
+			<input name="search" id="search" placeholder="Search" type="search"/>
+		</form>
+	</div>
+
 	<div data-role="content">
+		<div class="view-main-content"></div>
+		<script type="template/underscore" id="search_results_template">
+			<ul data-role="listview" data-inset="true" class="view-results view-temp">
+				<% _.each(results, function(result) { %>
+					<li>
+						<a href="#">
+							<img src="<%= config.image_location %><%= result.thingId %><%= config.small_image %>">
+							<h2><%= result.name %></h2>
+							<p><%= result.metadata.location.readable %></p>
+						</a>
+					</li>
+				<% }); %>
+			</ul>
+		</script>
 	</div>
 
 	<div data-role="footer" data-position="fixed">

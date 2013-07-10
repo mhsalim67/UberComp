@@ -1,5 +1,6 @@
 $(function() {
-	var location_enabled = true;
+	var location_enabled = true,
+		search_results_template = _.template($("#search_results_template").html());
 	$("#add_photo").bind("pageshow", function(event) {
 		if (!navigator.geolocation) {
 			//handle geolocation not available (jquery mobile popup)
@@ -11,6 +12,44 @@ $(function() {
 			$("#location_support").popup().popup("open");
 		}
 	});
+
+	$("#search_photos").bind("pageshow", function(event) {
+		updateSearchResults();
+	});
+
+	$("#search-form").submit(function() {
+		var query = $("#search").val(),
+			args = {};
+		if(query) {
+			args.fields = ['name']; 
+			args.queries = [query];
+		}
+		updateSearchResults(args);
+		return false;
+	});
+
+	function updateSearchResults(args) {
+		var search = {
+			fields: ['type'],
+			queries: ['image']
+		}
+		if(args && args.fields && args.queries) {
+			search.fields = search.fields.concat(args.fields);
+			search.queries = search.queries.concat(args.queries);
+		}
+		var things = $.ThingBroker().getThings({
+			fields: search.fields,
+			queries: search.queries
+		});
+
+		$(".view-temp").remove();
+		$(".view-main-content").append(
+			search_results_template({
+				results: things
+			})
+		);
+		$(".view-results").listview().listview("refresh");
+	}
 
 	//create the thingbroker instance
 	var tb = $.ThingBroker();
@@ -55,6 +94,15 @@ $(function() {
 									img_name: resp['image_name'],
 									comments: resp['image_comments'],
 									position: curr_pos
+								});
+								$.ThingBroker().postThing({
+									thingId: resp['img_src'].toString(),
+									name: resp['image_name'],
+									description: resp['image_comments'],
+									type: 'image',
+									metadata: {
+										'location': curr_pos
+									}
 								});
 							} 
 							$("#form_feedback").html(resp['feedback']);

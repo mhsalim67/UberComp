@@ -364,6 +364,29 @@ jQuery.ThingBroker  = function(params) {
     return thingMap;
   }
 
+  var getThings = function(args) {
+    var thingMap = {},
+      url = params.url+"/things";
+    if(args && args.fields && args.queries) {
+      url = url+"?";
+      for(i in args.fields) {
+        url = url+args.fields[i]+"="+args.queries[i]+"&";
+      }
+    }
+    $.ajax({
+      async: false,
+      type: "GET",
+      crossDomain: true,
+      url: url,
+      dataType: "JSON",
+      success: function(json) {
+        thingMap = json;
+      },
+      error: function(){console.log("Thingbroker Connection Error.")}
+    });
+    return thingMap;
+  }
+
   var postEvent = function(thingId, event) {
      var response = {}
      thingId = thingId.replace('#', '');
@@ -486,6 +509,7 @@ jQuery.ThingBroker  = function(params) {
     putEvent: putEvent,
     getEvents: getEvents,
     getThing: getThing,
+    getThings: getThings,
     postMetadata: postMetadata,
     getMetadata: getMetadata,
     postThingById: postThingById,
