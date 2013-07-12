@@ -40,6 +40,7 @@ $(function() {
 		});
 		thing = thing[0];
 		$(".view-temp").remove();
+		$(".comment").remove();
 		$(".view_photo_content").append(
 			result_view_template({
 				name: thing.name,
