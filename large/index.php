@@ -16,6 +16,10 @@
 	<link rel="stylesheet" type="text/css" href="Style/mystyle.css" />
 	<script>
 		var map;
+		var counter =1;
+		var stat = 0;
+		var marker = [];
+		var infowindow;
 		function initialize() {
 		  var mapOptions = {
 			zoom: 13,
@@ -32,30 +36,39 @@ function addIcons(response){
     size: new google.maps.Size(50, 47),
   };
   var myLatLng = new google.maps.LatLng(response.position.latitude,response.position.longitude);
-  var marker = new google.maps.Marker({
+  console.log(counter);
+  if (counter == 10){
+  
+	counter = 1;
+	stat = 1;
+  }
+  if(stat==1){
+  marker[counter].infowindow.close();
+  }
+  marker [counter] = new google.maps.Marker({
         position: myLatLng,
 		icon: image,
 		title: response.img_name,
-        map: map});
-		map.setCenter(marker.getPosition());
-		var contentString = '<div id="content">'+
-      '<h3>'+'<img src="'+config.image_qrcode+response.img_src+
-	  '"alt="qr code" width="80" height="80" align="middle"/>'+response.img_name+'</h3>'+
-      '<div id="bodyContent" class="your-selector">'+
-      "<img style='border:10px solid #FFFFFF' src="+
-	  config.image_location+response.img_src+config.small_image+' /></br>'+response.comments+
-      '</div>'+
-      '</div>';
+        map: map
+		});
+		
+		map.setCenter(myLatLng);
+		var contentString = '<div id="content"  ><table border="0" > <tbody><tr><td rowspan="2" width="100" height="62"><img src="'+
+	  config.image_location+response.img_src+config.small_image+'" /></td><td width="50" height="12">'+response.img_name+'</td></tr><tr><td width="50" height="50">'+
+      '<img src="'+config.image_qrcode+response.img_src+
+	  '"alt="qr code" width="50" height="50"  align="top"/></td></tr><tr><td colspan="2" width="200" ><div class="your-selector ">'+
+      response.comments+'</div></td></tr></tbody></table></div>';
 
-  var infowindow = new google.maps.InfoWindow({
+   marker[counter].infowindow = new google.maps.InfoWindow({
       content: contentString,
-	  maxWidth: 300
+	  maxWidth: 200
 	  });
 
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(map,marker);
+  google.maps.event.addListener(marker[counter], 'click', function() {
+	marker[counter].infowindow.open(map,marker);	
   });		
-  infowindow.open(map,marker);		
+  marker[counter].infowindow.open(map,marker[counter]);	
+counter ++;  
 }
 		google.maps.event.addDomListener(window, 'load', initialize);
     </script>
@@ -64,9 +77,9 @@ function addIcons(response){
   <body>
   <!-- 2) Dividing the large screen -->
    <!-- 3) latestImage location -->
-	<div id="latestImage"style="position:absolute;bottom:0;width:100%;height:10%;"></div>
+	<div id="latestImage" class="Overlay"></div>
   <!-- 5) Map location -->
-    <div id="map-canvas" style="position:absolute;top:0;width:100%;height:90%;"></div>
+    <div id="map-canvas" style="position:absolute;top:0;width:100%;height:100%;"></div>
     <script type="text/javascript">
       //Make sure the thing is created
       var thing = $.ThingBroker().getThing(config.app_name);

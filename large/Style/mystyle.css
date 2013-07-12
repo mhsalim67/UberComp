@@ -6,3 +6,20 @@
   word-wrap: break-word;
   text-align: justify;
 }
+
+  .Overlay { 
+  position: absolute; 
+  left: 0px; 
+  bottom: 0px; 
+  right: 0px; 
+  height: 80px;
+  width: 80px; 
+  
+  background-color: white; 
+  z-index: 100 
+  }
+  .infowin{
+  width: 200px; 
+  height: 200px; 
+  overflow: auto;'}
+  td { width: 100px; overflow: hidden; }
