@@ -51,25 +51,36 @@ $(function() {
 		$("#save-comment").trigger("create");
 		$("#save-comment").submit(function() {
 			var comment = $("#comment").val();
-			tb.postEvent($_GET.id, {comment: comment});
+			var new_event = tb.postEvent($_GET.id, {comment: comment}),
+				date = new Date(new_event.serverTimestamp);
+
 			$(".image_comments").prepend(
 				image_comment_template({
-					comment: comment
+					comment: comment,
+					time: date.getDate()+"-"+date.getMonth()+"-"+
+						date.getFullYear()+" at "+date.getHours()+":"+
+						date.getMinutes()
 				})
 			);
 			$("#comment").val("");
+			$(".image_comments").listview("refresh");
 
 			return false;
 		});
 
 		var comments = tb.getEvents($_GET.id);
 		_.each(comments, function(comment) {
+			var date = new Date(comment.serverTimestamp);
 			$(".image_comments").append(
 				image_comment_template({
-					comment: comment.info.comment
+					comment: comment.info.comment,
+					time: date.getDate()+"-"+date.getMonth()+"-"+
+						date.getFullYear()+" at "+date.getHours()+":"+
+						date.getMinutes()
 				})
 			);
 		});
+		$(".image_comments").listview().listview("refresh");
 
 	});
 

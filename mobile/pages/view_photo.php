@@ -8,7 +8,9 @@
 
 	<div data-role="content">
 		<div class="view_photo_content"></div>
-		<div class="image_comments"></div>
+		<div>
+			<ul class="ui-listview image_comments" data-role="listview"></ul>
+		</div>
 		<script type="template/underscore" id="result_view_template">
 			<div class="view-temp">
 				<h1><%= name %></h1>
@@ -16,16 +18,21 @@
 				<p><%= description %>
 
 				<form id="save-comment">
-					<textarea name="comment" id="comment"></textarea>
-					<button data-theme="a" id="comment_submit">Submit</button>
+					<textarea name="comment" id="comment" required></textarea>
+					<button data-theme="a" id="comment_submit">Post comment</button>
 				</form>
 			</div>
 		</script>
 
 		<script type="template/underscore" id="image_comment_template">
-			<div class="comment">
-				<p><%= comment %></p>
-			</div>
+			<li class="comment view-temp">
+				<p class="ui-li-aside ui-li-desc">
+					Posted on <%= time %>
+				</p>
+				<p class="ui-li-desc">
+					<strong><%= comment %></strong>
+				</p>
+			</li>
 		</script>
 	</div>
 
