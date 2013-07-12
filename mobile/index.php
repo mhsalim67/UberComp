@@ -9,12 +9,13 @@
 	<!-- 1) Include the libraries -->
 	<script type="text/javascript" src="../common/config.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+	<script type="text/javascript" src="static/jqm.page.params.js"></script>
 	<script type="text/javascript" src="../common/jquery.thingbroker-0.3.0.js"></script>
 	<script type="text/javascript" src="../common/jquery.formplugin.js"></script>
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 
-	<script src="static/scripts.js"></script>
+	<script type="text/javascript" src="static/scripts.js"></script>
 
 	</head>  
 
@@ -22,5 +23,6 @@
 		<?php require('pages/my_photos.php'); ?>
 		<?php require('pages/search_photos.php'); ?>
 		<?php require('pages/add_photo.php'); ?>
+		<?php require('pages/view_photo.php'); ?>
 	</body>
 </html>

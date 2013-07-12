@@ -1,6 +1,18 @@
 $(function() {
 	var location_enabled = true,
-		search_results_template = _.template($("#search_results_template").html());
+		search_results_template = _.template($("#search_results_template").html()),
+		result_view_template = _.template($("#result_view_template").html()),
+		image_comment_template = _.template($("#image_comment_template").html()),
+		$_GET = {};
+
+	//create the thingbroker instance
+	var tb = $.ThingBroker();
+	tb.postThing({thingId: config.app_name});
+
+	$.mobile.pageContainer.on("pagebeforechange", function(e, data) {
+		$_GET = data.options.pageData;
+	});
+
 	$("#add_photo").bind("pageshow", function(event) {
 		if (!navigator.geolocation) {
 			//handle geolocation not available (jquery mobile popup)
@@ -17,12 +29,57 @@ $(function() {
 		updateSearchResults();
 	});
 
+	$("#view_photo").bind("pageshow", function(event) {
+		if(!($_GET && $_GET.id)) {
+			$.mobile.changePage("#search_photos");
+			return false;
+		}
+		var thing = $.ThingBroker().getThings({
+			fields: ['thingId'],
+			queries: [$_GET.id]
+		});
+		thing = thing[0];
+		$(".view-temp").remove();
+		$(".view_photo_content").append(
+			result_view_template({
+				name: thing.name,
+				thingId: thing.thingId,
+				description: thing.description
+			})
+		);
+
+		$("#save-comment").trigger("create");
+		$("#save-comment").submit(function() {
+			var comment = $("#comment").val();
+			tb.postEvent($_GET.id, {comment: comment});
+			$(".image_comments").prepend(
+				image_comment_template({
+					comment: comment
+				})
+			);
+			$("#comment").val("");
+
+			return false;
+		});
+
+		var comments = tb.getEvents($_GET.id);
+		_.each(comments, function(comment) {
+			$(".image_comments").append(
+				image_comment_template({
+					comment: comment.info.comment
+				})
+			);
+		});
+
+	});
+
 	$("#search-form").submit(function() {
 		var query = $("#search").val(),
 			args = {};
 		if(query) {
 			args.fields = ['name']; 
 			args.queries = [query];
+			args.search = query;
 		}
 		updateSearchResults(args);
 		return false;
@@ -32,28 +89,30 @@ $(function() {
 		var search = {
 			fields: ['type'],
 			queries: ['image']
-		}
+		};
 		if(args && args.fields && args.queries) {
 			search.fields = search.fields.concat(args.fields);
 			search.queries = search.queries.concat(args.queries);
 		}
+		
 		var things = $.ThingBroker().getThings({
 			fields: search.fields,
 			queries: search.queries
 		});
+		search = '';
+		if(args && args.search) {
+			search = args.search;
+		}
 
 		$(".view-temp").remove();
 		$(".view-main-content").append(
 			search_results_template({
-				results: things
+				results: things,
+				search: search
 			})
 		);
 		$(".view-results").listview().listview("refresh");
 	}
-
-	//create the thingbroker instance
-	var tb = $.ThingBroker();
-	tb.postThing({thingId: config.app_name});
 
 	//function for image uploading
 	$("#image-upload").submit(function() {

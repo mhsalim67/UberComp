@@ -10,8 +10,8 @@
 		<script type="template/underscore" id="search_results_template">
 			<ul data-role="listview" data-inset="true" class="view-results view-temp">
 				<% _.each(results, function(result) { %>
-					<li>
-						<a href="#">
+					<li data-id="<%= result.thingId %>">
+						<a href="#view_photo?id=<%= result.thingId %>&search=<%= search %>">
 							<img src="<%= config.image_location %><%= result.thingId %><%= config.small_image %>">
 							<h2><%= result.name %></h2>
 							<p><%= result.metadata.location.readable %></p>
